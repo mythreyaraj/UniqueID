@@ -1,8 +1,9 @@
 <?php
+$root=$_SERVER['SCRIPT_NAME']."/..";
 include('includes/function.php');
 
 if(!isset($_GET['page'])){
-	redirect_to('/id/home');
+	redirect_to($root.'/home');
 }
 else{
 	$TITLE=$_GET['page'];
