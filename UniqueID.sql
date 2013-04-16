@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2013 at 01:31 PM
--- Server version: 5.5.29
--- PHP Version: 5.3.10-1ubuntu3.6
+-- Generation Time: Apr 16, 2013 at 11:31 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `UniqueID`
+-- Database: `dbms`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `airline_info` (
   `TO` varchar(100) NOT NULL,
   `DATE` date NOT NULL,
   `NUMBER_OF_PASSENGERS` int(11) NOT NULL,
-  `TICKET_NOUMBER` varchar(100) NOT NULL
+  `TICKET_NUMBER` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Airline tickets information.';
 
 -- --------------------------------------------------------
@@ -91,7 +91,6 @@ CREATE TABLE IF NOT EXISTS `basic_info` (
   `ADDRESS_2` varchar(100) NOT NULL,
   `ADDRESS_3` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `FINGERPRINT` varchar(100) NOT NULL,
   `PHOTOGRAPH` int(11) NOT NULL,
   `ACCOUNT_BALANCE` int(11) NOT NULL,
   PRIMARY KEY (`UID`)
