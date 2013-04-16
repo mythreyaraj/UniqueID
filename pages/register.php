@@ -2,6 +2,16 @@
   if(is_loggedin()){
     redirect_to($root);
   }
+  if(isset($_POST['register'])){
+    addnewuser($_POST['username'],$_POST['password'],$_POST['rpassword']);
+  }
+          if(isset($_GET['subpage']) && $_GET['subpage']=='success'){
+            echo '
+                    <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Hurray!    </strong>Registered Successfully
+                    </div>';
+          }          
 ?>
 <style type="text/css">
 	 .form-register {
@@ -26,10 +36,10 @@
         padding: 7px 9px;
       }
 </style>
-<form class="form-register">
+<form class="form-register" method="post">
         <h4 class="form-register-heading">Registration</h4>
         <input type="text" class="input-block-level" name="username" placeholder="Username">
         <input type="password" class="input-block-level" name="password" placeholder="Password">
         <input type="password" class="input-block-level" name="rpassword" placeholder="Reenter-Password">
-        <button class="btn btn-medium btn-primary" type="submit">Register</button>
+        <button class="btn btn-medium btn-primary" type="submit" name="register">Register</button>
 </form>

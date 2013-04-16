@@ -1,3 +1,12 @@
+ <?php 
+          if(isset($_GET['subpage']) && $_GET['subpage']=='success'){
+            echo '
+                    <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Hurray!    </strong>Logged in Successfully
+                    </div>';
+          }          
+?>
 <div id='content' class='row-fluid'>
   <div class='span9 main'>
     <h2>Main Content Section</h2>

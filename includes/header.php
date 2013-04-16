@@ -5,8 +5,8 @@
 <HTML>
 	<HEAD>
 		<TITLE><?php echo $TITLE; ?></TITLE>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $root;?>/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $root;?>/css/bootstrap-responsive.min.css">
 	</HEAD>
 <BODY>
 <style type='text/css'>
