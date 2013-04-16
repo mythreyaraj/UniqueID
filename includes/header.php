@@ -28,13 +28,19 @@
     }
 </style>
 <div class='container'>
-    <h3>DBMS-<?php echo strtoupper($TITLE); ?></h3>
+    <h3>DBMS  <small><?php echo strtoupper($TITLE); ?></small></h3>
     <div class='navbar navbar-inverse'>
       <div class='navbar-inner nav-collapse' style="height: auto;">
         <ul class="nav">
           <li class='<?php if($TITLE=='home'){echo "active";} ?>'><a href="<?php echo $root."/home"?>">Home</a></li>
+        <?php if(!is_loggedin()){ ?>  
           <li class='<?php if($TITLE=='login'){echo "active";} ?>'><a href="<?php echo $root."/login"?>">login</a></li>
           <li class='<?php if($TITLE=='register'){echo "active";} ?>'><a href="<?php echo $root."/register"?>">register</a></li>
+        <?php }
+          else{
+        ?>   
+          <li class='<?php if($TITLE=='logout'){echo "active";} ?>'><a href="<?php echo $root."/logout"?>">logout</a></li>
+        <?php } ?>  
         </ul>
       </div>
     </div>

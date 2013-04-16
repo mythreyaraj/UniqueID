@@ -1,3 +1,8 @@
+<?php 
+  if(is_loggedin()){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-register {
         max-width: 300px;

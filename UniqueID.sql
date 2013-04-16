@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2013 at 11:31 AM
+-- Generation Time: Apr 16, 2013 at 05:37 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `airline_info` (
 
 CREATE TABLE IF NOT EXISTS `authentication` (
   `UID` varchar(100) NOT NULL,
+  `USERNAME` varchar(100) NOT NULL,
   `PASSWORD` varchar(100) NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID';

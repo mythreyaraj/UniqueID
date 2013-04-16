@@ -1,3 +1,11 @@
+<?php 
+  if(is_loggedin()){
+    redirect_to($root);
+  }
+  if(isset($_POST['login'])){
+    verifylogin($_POST['username'],$_POST['password']);
+  }
+?>
 <style type="text/css">
 	 .form-signin {
         max-width: 300px;
@@ -24,9 +32,9 @@
         padding: 7px 9px;
       }
 </style>
-<form class="form-signin">
+<form class="form-signin" method="post">
         <h4 class="form-signin-heading">Please sign in</h4>
-        <input type="text" class="input-block-level" placeholder="Username">
-        <input type="password" class="input-block-level" placeholder="Password">
-        <button class="btn btn-medium btn-primary" type="submit">Sign in</button>
+        <input type="text" class="input-block-level" placeholder="Username" name="username">
+        <input type="password" class="input-block-level" placeholder="Password" name="password">
+        <button class="btn btn-medium btn-primary" type="submit" name="login">Sign in</button>
 </form>
