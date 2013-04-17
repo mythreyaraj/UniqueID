@@ -26,12 +26,11 @@
 				}
 
 			}
-			$_POST['form']='airline_info';
 			$query='INSERT INTO `'.$_POST['form'].'`';
-			$query.=' VALUES(`'.$_POST[$attributes[$_POST['form'][0]]].'`';
+			$query.=' VALUES(\''.$_POST[$attributes[$_POST['form'][0]]].'\'';
 			for ($i=1;$i<count($fields[$_POST['form']]);$i++)
 			{
-				$query.=',`'.$_POST[$attributes[$_POST['form'][$i]]].'`';
+				$query.=',\''.$_POST[$attributes[$_POST['form'][$i]]].'\'';
 			}
 			$query.=');';
 			mysql_query($query);
@@ -45,7 +44,7 @@
 		$table=$_POST['table'];
 		$field=$_POST['field'];
 		$val=$_POST['value'];
-		$query='UPDATE `'.$table.'` SET `'.$field.'`=`'.$val.'`';
+		$query='UPDATE `'.$table.'` SET `'.$field.'`=\''.$val.'\'';
 		mysql_query($query);
 	}
 	else if($_POST['sqltransaction']=='query')
@@ -60,7 +59,7 @@
 			$table=$_POST['table'];
 			$field=$_POST['field'];
 			$val=$_POST['value'];
-			$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=`'.$val.'`;';
+			$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=\''.$val.'\';';
 		}
 		else
 			$query='SELECT * FROM `'.$table.'`;';		
