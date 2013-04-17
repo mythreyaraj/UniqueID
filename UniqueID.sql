@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2013 at 09:10 AM
+-- Generation Time: Apr 17, 2013 at 11:33 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.6
 
@@ -92,8 +92,8 @@ CREATE TABLE IF NOT EXISTS `basic_info` (
   `ADDRESS_2` varchar(100) NOT NULL,
   `ADDRESS_3` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `PHOTOGRAPH` int(11) NOT NULL,
-  `ACCOUNT_BALANCE` int(11) NOT NULL,
+  `PHOTOGRAPH` text NOT NULL,
+  `ACCOUNT_BALANCE` double NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores the personal information of each Unique ID';
 
