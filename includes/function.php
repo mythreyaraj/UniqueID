@@ -69,9 +69,17 @@
 			$id=$row['UID'];
 			$_SESSION['UID']=$id;
 		}
-			
+		$query="INSERT INTO `basic_info` values('{$_SESSION['UID']}','fname','mname','lname','1234-5-6','male','single','a1','a2','a3','random@rand.com','qwer',123,123)";
+		mysql_query($query);
+		$query="INSERT INTO `birth_info` values('{$_SESSION['UID']}','1234-5-6','male',-1,-1)";
+		mysql_query($query);
+		$query="INSERT INTO `electricity_info` values('{$_SESSION['UID']}',0)";
+		mysql_query($query);		
+		$query="INSERT INTO `passport_info` values('{$_SESSION['UID']}',-1)";
+		mysql_query($query);				
+		$query="INSERT INTO `phone_info` values('{$_SESSION['UID']}',0)";
+		mysql_query($query);						
 	}
-
 	function is_loggedin(){
 		if(isset($_SESSION['user'])){
 			return true;
@@ -140,4 +148,12 @@
 		$result=mysql_query($query);
 		echo json_encode($result);		
 	}	
+	function transaction($transaction,$amount,$description)
+	{
+		$query="SELECT `ACCOUNT_NUMBER` FROM `bank_info` WHERE `UID`={$_SESSION['UID']};";
+		$result=mysql_query($query);
+		$acct=$result['ACCOUNT_NUMBER'];
+		$query="INSERT INTO bank_description VALUES('{$acct}','{$transaction}','{$amount}','{$description}')";
+		mysql_query($query);
+	}
 ?>
