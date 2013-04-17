@@ -1,11 +1,8 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2013 at 07:18 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `dbms`
+-- Database: `UniqueID`
 --
 
 -- --------------------------------------------------------
@@ -49,13 +46,6 @@ CREATE TABLE IF NOT EXISTS `authentication` (
   UNIQUE KEY `USERNAME` (`USERNAME`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID' AUTO_INCREMENT=2 ;
 
---
--- Dumping data for table `authentication`
---
-
-INSERT INTO `authentication` (`UID`, `USERNAME`, `PASSWORD`) VALUES
-(1, 'admin', '0cc175b9c0f1b6a831c399e269772661');
-
 -- --------------------------------------------------------
 
 --
@@ -63,7 +53,7 @@ INSERT INTO `authentication` (`UID`, `USERNAME`, `PASSWORD`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `bank_description` (
-  `ACCOUNT_NUMBER` varchar(100) NOT NULL,
+  `ACCOUNT_NUMBER` int(11) NOT NULL,
   `TRANSACTION` varchar(100) NOT NULL,
   `AMOUNT` double NOT NULL,
   `DESCRIPTION` text NOT NULL
@@ -78,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `bank_description` (
 CREATE TABLE IF NOT EXISTS `bank_info` (
   `UID` int(11) NOT NULL,
   `BANK` varchar(100) NOT NULL,
-  `ACCOUNT_NUMBER` varchar(100) NOT NULL,
+  `ACCOUNT_NUMBER` int(11) NOT NULL,
   `BALANCE` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='table describes bank account details of all UIDS';
 
@@ -100,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `basic_info` (
   `ADDRESS_2` varchar(100) NOT NULL,
   `ADDRESS_3` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `PHOTOGRAPH` int(11) NOT NULL,
-  `ACCOUNT_BALANCE` int(11) NOT NULL,
+  `PHOTOGRAPH` text NOT NULL,
+  `ACCOUNT_BALANCE` double NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores the personal information of each Unique ID';
 
@@ -116,9 +106,10 @@ CREATE TABLE IF NOT EXISTS `birth_info` (
   `DATE` date NOT NULL,
   `HOSPITAL` varchar(100) NOT NULL,
   `DOCTOR` varchar(100) NOT NULL,
-  `FATHER_UID` varchar(100) NOT NULL,
-  `MOTHER_UID` varchar(100) NOT NULL,
-  PRIMARY KEY (`UID`)
+  `FATHER_UID` int(11) NOT NULL,
+  `MOTHER_UID` int(11) NOT NULL,
+  PRIMARY KEY (`UID`),
+  UNIQUE KEY `UID` (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -129,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `birth_info` (
 
 CREATE TABLE IF NOT EXISTS `criminal_info` (
   `UID` int(11) NOT NULL,
-  `FIR_NUMBER` varchar(100) NOT NULL
+  `FIR_NUMBER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table links fir details to unique ids';
 
 -- --------------------------------------------------------
@@ -177,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `electricity_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `fir_details` (
-  `FIR_NUMBER` varchar(100) NOT NULL,
+  `FIR_NUMBER` int(11) NOT NULL,
   `DATE` date NOT NULL,
   `DESCRIPTION` text NOT NULL,
   `FIR_COPY` varchar(100) NOT NULL,
@@ -227,8 +218,8 @@ CREATE TABLE IF NOT EXISTS `phone_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `phone_transactions` (
-  `UID` int(100) NOT NULL,
-  `PHONE_NUMBER` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
+  `PHONE_NUMBER` int(11) NOT NULL,
   `AMOUNT` double NOT NULL,
   `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

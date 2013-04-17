@@ -13,7 +13,7 @@
 				session_start();
 				$_SESSION['user']=$username;
 				global $root;
-				redirect_to($root."/home/success");
+				redirect_to($root."/home/background");
 			}
 			else{
 			    echo '
@@ -34,7 +34,7 @@
 		if($password==$rpassword){
 			$password=md5($password);
 			$con=openconnection();
-			$sql="INSERT INTO  `dbms`.`authentication` (`USERNAME` ,`PASSWORD`) VALUES ('{$username}',  '{$password}');";	
+			$sql="INSERT INTO  `authentication` (`USERNAME` ,`PASSWORD`) VALUES ('{$username}',  '{$password}');";	
 			$result=mysql_query($sql,$con);
 			if($result){
 					initialization($username);
@@ -55,7 +55,7 @@
 				    echo '
 	    			    <div class="alert">
 	    		    	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	    			    <strong>Warning!    </strong>Password Dont Match or Username already in use
+	    			    <strong>Warning!    </strong>Passwords Don\'t Match or Username already in use
 	    	   			</div>';
 	       	
 	    } 	
@@ -63,11 +63,12 @@
 
 	function initialization($username){
 		$con=openconnection();
-		$sql="SELECT `UID` FROM `dbms`.`authentication` WHERE `USERNAME`={$username}";
+		$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`={$username}";
 		if($result=mysql_query($sql,$con)){
 			$row=mysql_fetch_array($result);
 			$id=$row['UID'];
-		}	
+		}
+			
 	}
 
 	function is_loggedin(){
