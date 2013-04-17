@@ -40,10 +40,31 @@
 	}
 	else if($_POST['sqltransaction']=='update')
 	{
+		if(!isset($_POST['table']) or !isset($_POST['field']) or !isset($_POST['value']))
+			die('Error: Invalid Access');	
 		$table=$_POST['table'];
 		$field=$_POST['field'];
 		$val=$_POST['value'];
 		$query='UPDATE `'.$table.'` SET `'.$field.'`=`'.$val.'`';
 		mysql_query($query);
+	}
+	else if($_POST['sqltransaction']=='query')
+	{
+		if(!isset($_POST['table']))
+			die('Error: Invalid Access');
+		$table=$_POST['table'];
+		if(isset($_POST['field']) and !isset($val=$_POST['value'])
+			die('Error:Invalid Access');
+		else if(isset($_POST['field']) and isset($val=$_POST['value']))
+		{
+			$table=$_POST['table'];
+			$field=$_POST['field'];
+			$val=$_POST['value'];
+			$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`='.$val.'`;';
+		}
+		else
+			$query='SELECT * FROM `'.$table.'`;';		
+		$result=mysql_query($query);
+		echo json_encode($result);
 	}
 ?>
