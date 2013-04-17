@@ -85,7 +85,6 @@
 		redirect_to($root);
 	}
 
-
 	function redirect_to($url){
 		header("Location: {$url}");
 	}
@@ -99,5 +98,36 @@
 	}
 	function closeconnection(){
 		mysql_close();		
+	}	
+	function insert($table,$data)
+	{
+		$query='INSERT INTO `'.$table.'`';
+		$query.=' VALUES(\''.$data[$attributes[$table][0]].'\'';
+		for ($i=1;$i<count($attributes[$table]]);$i++)
+		{
+			$query.=',\''.$data[$attributes[$table][$i]].'\'';
+		}
+		$query.=');';
+		mysql_query($query);	
+	}
+	function update($table,$attribute,$val)
+	{
+		$query='UPDATE `'.$table.'` SET `'.$attribute.'`=\''.$val.'\'';
+		mysql_query($query);	
+	}
+	function updateAll($table,$data)
+	{
+		$query='UPDATE `'.$table.'` SET `';
+		$query.=$attributes[$table][0].'`=\''.$data[$attributes[$table][0]].'\'';		
+		for ($k=1;$k<count($attributes[$table]);$k++)
+			$query.=',`'.$attributes[$table][$k].'`=\''.$data[$k].'\'';
+		$query.=';';
+		mysql_query($query);
+	}
+	function query($table,$attribute=1,$value=1)
+	{
+		$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=\''.$val.'\';';
+		$result=mysql_query($query);
+		echo json_encode($result);		
 	}	
 ?>
