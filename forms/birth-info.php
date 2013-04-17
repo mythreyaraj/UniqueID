@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'])){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-birth-info {
         max-width: 300px;
@@ -33,7 +38,5 @@
     <label for="HOSPITAL">Hospital:</label><input type="text" class="input-block-level" name="HOSPITAL" value="<?php echo $row['HOSPITAL']; ?>"/>
 		<label for="FATHER_UID">Father ID:</label><input type="number" class="input-block-level" name="FATHER_UID" value="<?php echo $row['FATHER_UID']; ?>" />
     <label for="MOTHER_UID">Mother ID:</label><input type="number" class="input-block-level" name="MOTHER_UID" value="<?php echo $row['MOTHER_UID']; ?>" />
-    <input type="hidden" name="sqltransaction" value="update"/>
-    <input type="hidden" name="table" value="birth-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">UPDATE</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="birthinfo">UPDATE</button>
 </form>

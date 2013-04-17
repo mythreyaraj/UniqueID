@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'])){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-bank-info {
         max-width: 300px;
@@ -34,7 +39,5 @@
 		<label for="BANK">Bank Name:</label><input type="text" class="input-block-level" name="BANK"/>
     <label for="ACCOUNT_NUMBER">Account Number:</label><input type="text" class="input-block-level" name="ACCOUNT_NUMBER"/>
 		<label for="BALANCE">Balance:</label><input type="number" class="input-block-level" name="BALANCE"/>
-    <input type="hidden" name="sqltransaction" value="insert"/>
-    <input type="hidden" name="table" value="bank-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">ADD ACCOUNT</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="addbank">ADD ACCOUNT</button>
 </form>

@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'])){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-airline-info {
         max-width: 300px;
@@ -38,8 +43,6 @@
 		<label for="DATE">Date:</label><input type="date" class="input-block-level" name="DATE" min="2013-04-16"/>
 		<label for="NUMBER_OF_PASSENGERS">Number of Passengers:</label><input type="number" class="input-block-level" name="NUMBER_OF_PASSENGERS"/>
 		<input type="hidden" class="input-block-level" name="TICKET_NUMBER" value="<?php echo md5(time()."this is a salted hash:)") ?>"/>
-    <input type="hidden" name="sqltransaction" value="insert"/>
-    <input type="hidden" name="table" value="airline-info"/>
     <p>COST:=number_of_passengers x 1000 INR</p>
-    <button class="btn btn-medium btn-primary" type="submit">BOOK TICKET</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="bookairlines">BOOK TICKET</button>
 </form>

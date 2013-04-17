@@ -5,6 +5,9 @@
         $query="SELECT * FROM `basic_info` WHERE `UID`={$id}";
         $result=mysql_query($query) or die(mysql_error());
         $row=mysql_fetch_array($result);
+    }
+    else{
+        redirect_to($root);
     }    
 ?>
 <style type="text/css">
@@ -71,8 +74,6 @@
             <label for="ACCOUNT_BALANCE">Account Balance:</label><input type="text" value="<?php echo $row['ACCOUNT_BALANCE']; ?>" class="input-block-level" disabled="disabled" name="ACCOUNT_BALANCE"/>
             <br/><br/><br/>
             <input type="hidden" name="PHOTOGRAPH" value="" id="photo"/>
-            <input type="hidden" name="sqltransaction" value="updateAll"/>
-            <input type="hidden" name="table" value="basic-info"/>
         </div>    
     </div>
     <div class="row">
@@ -95,7 +96,7 @@
     <br/><br/><br/>
     <div class="row">
         <div class="span12">
-            <button class="btn btn-medium btn-primary" type="submit">update</button>
+            <button class="btn btn-medium btn-primary" type="submit" name="basicupdate">update</button>
         </div> 
     </div>
 </form>
