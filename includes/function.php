@@ -121,7 +121,7 @@
 		}
 		$query='INSERT INTO `'.$table.'`';
 		$query.=' VALUES(\''.$data[$attributes[$table][0]].'\'';
-		for ($i=1;$i<count($attributes[$table]]);$i++)
+		for ($i=1;$i<count($attributes[$table]);$i++)
 		{
 			$query.=',\''.$data[$attributes[$table][$i]].'\'';
 		}

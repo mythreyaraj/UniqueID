@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'])){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-criminal-info {
         max-width: 300px;
@@ -34,7 +39,5 @@
     <label for="FIR_NUMBER">Fir number:</label><input type="text" class="input-block-level" name="FIR_NUMBER"/>
 		<label for="DATE">Date:</label><input type="date" class="input-block-level" name="DATE" max="2013-04-16"/>
     <label for="DESCRIPTION">Description:</label><input type="text" class="input-block-level" name="DESCRIPTION"/>
-    <input type="hidden" name="sqltransaction" value="insert"/>
-    <input type="hidden" name="table" value="criminal-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">ADD</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="addcrime">ADD</button>
 </form>

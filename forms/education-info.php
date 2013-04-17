@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'])){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-education-info {
         max-width: 300px;
@@ -35,7 +40,5 @@
     <label for="INSTITUTION">Institution:</label><input type="text" class="input-block-level" name="INSTITUTION"/>
 		<label for="PASSING_DATE">Date:</label><input type="date" class="input-block-level" name="PASSING_DATE" max="2013-04-16"/>
     <label for="PERCENTAGE">Date:</label><input type="number" class="input-block-level" name="PERCENTAGE" max=100 />
-    <input type="hidden" name="sqltransaction" value="insert"/>
-    <input type="hidden" name="table" value="education-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">ADD</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="addeducation">ADD</button>
 </form>

@@ -1,3 +1,8 @@
+<?php 
+  if(!isset($_SESSION['user'] && !isset($_SESSION['admin']))){
+    redirect_to($root);
+  }
+?>
 <style type="text/css">
 	 .form-electricity-info {
         max-width: 300px;
@@ -25,5 +30,5 @@
     <label for="OUTSTANDING_AMOUNT">OUTSTANDING AMOUNT:</label><input type="text" class="input-block-level" name="OUTSTANDING_AMOUNT"/>
     <input type="hidden" name="sqltransaction" value="update"/>
     <input type="hidden" name="table" value="electricity-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">UPDATE</button>
+    <button class="btn btn-medium btn-primary" type="submit" >UPDATE</button>
 </form>
