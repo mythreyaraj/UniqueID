@@ -101,6 +101,15 @@
 	}	
 	function insert($table,$data)
 	{
+		for ($i=0;$i<count($attributes[$table]]) and $attributes[$table]][$i]!='UID' ;$i++)
+		if($i<count($attributes[$table]])
+		{
+			if(!isset($data['UID']))
+			{
+				json_decode(query('authentication','UNAME',$_SESSION['name']),$temp);
+				$data['UID']=$temp['UID'];
+			}
+		}
 		$query='INSERT INTO `'.$table.'`';
 		$query.=' VALUES(\''.$data[$attributes[$table][0]].'\'';
 		for ($i=1;$i<count($attributes[$table]]);$i++)
