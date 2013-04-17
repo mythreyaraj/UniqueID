@@ -1,13 +1,13 @@
  <?php 
-          if(isset($_GET['subpage']))
+          if(isset($_GET['subpage']) && $_GET['subpage']=='success')
           {
-          	if($_GET['subpage']=='background'){
+          	
             	echo '
                     <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Hurray!    </strong>Logged in Successfully
                     </div>';
-		echo 'Registeration form here';
+		        
           }    
 ?>
 <div id='content' class='row-fluid'>
