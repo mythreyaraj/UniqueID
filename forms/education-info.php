@@ -39,6 +39,6 @@
     <label for="QUALIFICATION">Qualification:</label><input type="text" class="input-block-level" name="QUALIFICATION"/>
     <label for="INSTITUTION">Institution:</label><input type="text" class="input-block-level" name="INSTITUTION"/>
 		<label for="PASSING_DATE">Date:</label><input type="date" class="input-block-level" name="PASSING_DATE" max="2013-04-16"/>
-    <label for="PERCENTAGE">Date:</label><input type="number" class="input-block-level" name="PERCENTAGE" max=100 />
+    <label for="PERCENTAGE">PERCENTAGE:</label><input type="number" class="input-block-level" name="PERCENTAGE" max=100 />
     <button class="btn btn-medium btn-primary" type="submit" name="addeducation">ADD</button>
 </form>

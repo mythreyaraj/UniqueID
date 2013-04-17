@@ -32,5 +32,5 @@
     <label for="PASSPORT_NUMBER">Passport number:</label><input type="text" class="input-block-level" name="PASSPORT_NUMBER" value="<?php echo $row['PASSPORT_NUMBER']; ?>"/>
     <input type="hidden" name="sqltransaction" value="insert"/>
     <input type="hidden" name="table" value="passport-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">UPDATE</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="passportupdate">UPDATE</button>
 </form>

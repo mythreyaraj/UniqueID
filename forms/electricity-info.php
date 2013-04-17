@@ -1,5 +1,5 @@
 <?php 
-  if(!isset($_SESSION['user'] && !isset($_SESSION['admin']))){
+  if(isset($_SESSION['admin'])){
     redirect_to($root);
   }
 ?>
@@ -26,6 +26,7 @@
       }
 </style>
 <form class="form-electricity-info" method="post" action="<?php echo $root."/ajax"; ?>">
+    <h4 class="form-electricity-heading">electricity details</h4>
     <label for="UID">UID:</label><input type="text" class="input-block-level" name="UID"/>  
     <label for="OUTSTANDING_AMOUNT">OUTSTANDING AMOUNT:</label><input type="text" class="input-block-level" name="OUTSTANDING_AMOUNT"/>
     <input type="hidden" name="sqltransaction" value="update"/>

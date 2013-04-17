@@ -1,3 +1,6 @@
 <?php 
-	include('forms/basic-info.php');
+foreach (glob("forms/*.php") as $filename)
+{
+    include $filename;
+}
 ?>

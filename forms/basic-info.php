@@ -3,7 +3,7 @@
         openconnection();
         $id=$_SESSION['UID'];
         $query="SELECT * FROM `basic_info` WHERE `UID`={$id}";
-        $result=mysql_query($query) or die(mysql_error());
+        $result=mysql_query($query);
         $row=mysql_fetch_array($result);
     }
     else{
@@ -58,11 +58,11 @@
             F
             </label>
             <br/><br/>
-            <label for="MARTIAL_STATUS">Martial Status:</label><select name="MARTIAL_STATUS" class="input-block-level">
-            	<option value="married" <?php if($row['MARTIAL_STATUS']=='married'){ echo "selected";} ?> >Married</option>
-            	<option value="divorced" <?php if($row['MARTIAL_STATUS']=='divorced'){ echo "selected";} ?> >Divorced</option>
-            	<option value="single" <?php if($row['MARTIAL_STATUS']=='single'){ echo "selected";} ?> >Single</option>
-            	<option value="engaged" <?php if($row['MARTIAL_STATUS']=='engaged'){ echo "selected";} ?> >Engaged</option>
+            <label for="MARITAL_STATUS">MARITAL Status:</label><select name="MARITAL_STATUS" class="input-block-level">
+            	<option value="married" <?php if($row['MARITAL_STATUS']=='married'){ echo "selected";} ?> >Married</option>
+            	<option value="divorced" <?php if($row['MARITAL_STATUS']=='divorced'){ echo "selected";} ?> >Divorced</option>
+            	<option value="single" <?php if($row['MARITAL_STATUS']=='single'){ echo "selected";} ?> >Single</option>
+            	<option value="engaged" <?php if($row['MARITAL_STATUS']=='engaged'){ echo "selected";} ?> >Engaged</option>
             </select>
         </div>
         <div class="span5">
@@ -71,7 +71,6 @@
             <label for="ADDRESS_3">Address Line 3:</label><input type="text" value="<?php echo $row['ADDRESS_3']; ?>" class="input-block-level" name="ADDRESS_3"/>
             <label for="EMAIL">Email:</label><input type="text" value="<?php echo $row['EMAIL']; ?>" class="input-block-level" name="EMAIL"/>
             <label for="PHONE_NUMBER">Phone:</label><input type="text" value="<?php echo $row['PHONE_NUMBER']; ?>" class="input-block-level" name="PHONE_NUMBER"/>
-            <label for="ACCOUNT_BALANCE">Account Balance:</label><input type="text" value="<?php echo $row['ACCOUNT_BALANCE']; ?>" class="input-block-level" disabled="disabled" name="ACCOUNT_BALANCE"/>
             <br/><br/><br/>
             <input type="hidden" name="PHOTOGRAPH" value="" id="photo"/>
         </div>    

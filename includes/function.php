@@ -11,9 +11,15 @@
 			$result=mysql_query($sql,$con);
 			if(mysql_num_rows($result)==1){
 				session_start();
-				$_SESSION['user']=$username;
+				$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`={$username}";
+				if($result=mysql_query($sql,$con)){
+					$row=mysql_fetch_array($result);
+					$id=$row['UID'];
+					$_SESSION['UID']=$id;
+					$_SESSION['user']=$username;
+				}
 				global $root;
-				redirect_to($root."/home/background");
+				redirect_to($root."/home");
 			}
 			else{
 			    echo '
@@ -68,6 +74,7 @@
 			$row=mysql_fetch_array($result);
 			$id=$row['UID'];
 			$_SESSION['UID']=$id;
+			$_SESSION['user']=$username;
 		}
 		$query="INSERT INTO `basic_info` values('{$_SESSION['UID']}','fname','mname','lname','1234-5-6','male','single','a1','a2','a3','random@rand.com','qwer',123,123)";
 		mysql_query($query);
@@ -81,7 +88,7 @@
 		mysql_query($query);						
 	}
 	function is_loggedin(){
-		if(isset($_SESSION['user'])){
+		if(isset($_SESSION['user']) || isset($_SESSION['admin'])){
 			return true;
 		}
 		return false;

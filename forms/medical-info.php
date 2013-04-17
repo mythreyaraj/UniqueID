@@ -35,5 +35,5 @@
     <label for="DESCRIPTION">Description:</label><input type="text" class="input-block-level" name="DESCRIPTION"/>
     <input type="hidden" name="sqltransaction" value="insert"/>
     <input type="hidden" name="table" value="medical-info"/>
-    <button class="btn btn-medium btn-primary" type="submit">ADD</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="medicalform">ADD</button>
 </form>

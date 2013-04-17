@@ -42,5 +42,5 @@
     <input type="hidden" name="sqltransaction" value="insert"/>
     <input type="hidden" name="table" value="railway-info"/>
     <p>COST:=adult_tickets x 1000 + children_tickets x 500 INR</p>
-    <button class="btn btn-medium btn-primary" type="submit">BOOK TICKET</button>
+    <button class="btn btn-medium btn-primary" type="submit" name="bookrailticket">BOOK TICKET</button>
 </form>
