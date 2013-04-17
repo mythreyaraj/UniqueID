@@ -3,9 +3,6 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2013 at 11:33 AM
--- Server version: 5.5.29
--- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,8 +42,9 @@ CREATE TABLE IF NOT EXISTS `authentication` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(100) NOT NULL,
   `PASSWORD` varchar(100) NOT NULL,
-  PRIMARY KEY (`UID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID' AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`UID`),
+  UNIQUE KEY `USERNAME` (`USERNAME`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID' AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
