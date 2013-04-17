@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2013 at 12:26 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
+-- Generation Time: Apr 17, 2013 at 10:40 PM
+-- Server version: 5.5.29
+-- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `dbms`
+-- Database: `UniqueID`
 --
 
 -- --------------------------------------------------------
@@ -100,8 +100,8 @@ CREATE TABLE IF NOT EXISTS `basic_info` (
   `ADDRESS_2` varchar(100) NOT NULL,
   `ADDRESS_3` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
-  `PHOTOGRAPH` int(11) NOT NULL,
-  `ACCOUNT_BALANCE` int(11) NOT NULL,
+  `PHOTOGRAPH` text NOT NULL,
+  `ACCOUNT_BALANCE` double NOT NULL,
   `PHONE_NUMBER` int(11) NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores the personal information of each Unique ID';
@@ -116,8 +116,8 @@ CREATE TABLE IF NOT EXISTS `birth_info` (
   `UID` int(11) NOT NULL,
   `DATE` date NOT NULL,
   `HOSPITAL` varchar(100) NOT NULL,
-  `FATHER_UID` varchar(100) NOT NULL,
-  `MOTHER_UID` varchar(100) NOT NULL,
+  `FATHER_UID` int(11) NOT NULL,
+  `MOTHER_UID` int(11) NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
