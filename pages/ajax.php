@@ -60,7 +60,7 @@
 			$table=$_POST['table'];
 			$field=$_POST['field'];
 			$val=$_POST['value'];
-			$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`='.$val.'`;';
+			$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=`'.$val.'`;';
 		}
 		else
 			$query='SELECT * FROM `'.$table.'`;';		
