@@ -67,6 +67,7 @@
 		if($result=mysql_query($sql,$con)){
 			$row=mysql_fetch_array($result);
 			$id=$row['UID'];
+			$_SESSION['UID']=$id;
 		}
 			
 	}

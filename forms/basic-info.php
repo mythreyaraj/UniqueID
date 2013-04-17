@@ -1,8 +1,11 @@
 <?php 
     if(isset($_SESSION['user'])){
         openconnection();
-        
-    }
+        $id=$_SESSION['UID'];
+        $query="SELECT * FROM `basic_info` WHERE `UID`={$id}";
+        $result=mysql_query($query) or die(mysql_error());
+        $row=mysql_fetch_array($result);
+    }    
 ?>
 <style type="text/css">
 	 .form-basic-info {
@@ -35,38 +38,41 @@
         border: 1px  solid #ccc;
       }
 </style>
-<form class="form-basic-info" method="post" action="">
+<form class="form-basic-info" method="post" action="<?php echo $root."/ajax"; ?>">
     <div class="row">
         <div class="span6">
-            <label for="FIRST_NAME">First Name:</label><input type="text" class="input-block-level" name="FIRST_NAME"/>
-            <label for="MIDDLE_NAME">Middle Name:</label><input type="text" class="input-block-level" name="MIDDLE_NAME"/>
-            <label for="LAST_NAME">Last Name:</label><input type="text" class="input-block-level" name="LAST_NAME"/>
-            <label for="DOB">Date of Birth:</label><input type="date" class="input-block-level" name="DOB" max="2013-04-16"/>
+            <label for="FIRST_NAME">First Name:</label><input type="text" value="<?php echo $row['FIRST_NAME']; ?>" class="input-block-level" name="FIRST_NAME"/>
+            <label for="MIDDLE_NAME">Middle Name:</label><input type="text" value="<?php echo $row['MIDDLE_NAME']; ?>" class="input-block-level" name="MIDDLE_NAME"/>
+            <label for="LAST_NAME">Last Name:</label><input type="text" value="<?php echo $row['LAST_NAME']; ?>" class="input-block-level" name="LAST_NAME"/>
+            <label for="DOB">Date of Birth:</label><input type="date" value="<?php echo $row['DOB']; ?>" class="input-block-level" name="DOB" max="2013-04-16"/>
             <label for="SEX">SEX:</label>
             <label class="radio inline" for="SEX">
-            <input type="radio" name="SEX" value="male"/>
+            <input type="radio" name="SEX" value="male" <?php if($row['SEX']=='male'){ echo "checked";} ?> />
             M
             </label>
             <label class="radio inline" for="SEX">
-            <input type="radio" name="SEX" value="female"/>
+            <input type="radio" name="SEX" value="female" <?php if($row['SEX']=='female'){ echo "checked";} ?> />
             F
             </label>
             <br/><br/>
             <label for="MARTIAL_STATUS">Martial Status:</label><select name="MARTIAL_STATUS" class="input-block-level">
-            	<option value="married">Married</option>
-            	<option value="divorced">Divorced</option>
-            	<option value="single">Single</option>
-            	<option value="engaged">Engaged</option>
+            	<option value="married" <?php if($row['MARTIAL_STATUS']=='married'){ echo "selected";} ?> >Married</option>
+            	<option value="divorced" <?php if($row['MARTIAL_STATUS']=='divorced'){ echo "selected";} ?> >Divorced</option>
+            	<option value="single" <?php if($row['MARTIAL_STATUS']=='single'){ echo "selected";} ?> >Single</option>
+            	<option value="engaged" <?php if($row['MARTIAL_STATUS']=='engaged'){ echo "selected";} ?> >Engaged</option>
             </select>
         </div>
         <div class="span5">
-        	<label for="ADDRESS_1">Address Line 1:</label><input type="text" class="input-block-level" name="ADDRESS_1"/>
-            <label for="ADDRESS_2">Address Line 2:</label><input type="text" class="input-block-level" name="ADDRESS_2"/>
-            <label for="ADDRESS_3">Address Line 3:</label><input type="text" class="input-block-level" name="ADDRESS_3"/>
-            <label for="EMAIL">Email:</label><input type="text" class="input-block-level" name="EMAIL"/>
-            <label for="ACCOUNT_BALANCE">Account Balance:</label><input type="text" class="input-block-level" disabled="disabled" name="ACCOUNT_BALANCE"/>
+        	<label for="ADDRESS_1">Address Line 1:</label><input type="text" value="<?php echo $row['ADDRESS_1']; ?>" class="input-block-level" name="ADDRESS_1"/>
+            <label for="ADDRESS_2">Address Line 2:</label><input type="text" value="<?php echo $row['ADDRESS_2']; ?>" class="input-block-level" name="ADDRESS_2"/>
+            <label for="ADDRESS_3">Address Line 3:</label><input type="text" value="<?php echo $row['ADDRESS_3']; ?>" class="input-block-level" name="ADDRESS_3"/>
+            <label for="EMAIL">Email:</label><input type="text" value="<?php echo $row['EMAIL']; ?>" class="input-block-level" name="EMAIL"/>
+            <label for="PHONE_NUMBER">Phone:</label><input type="text" value="<?php echo $row['PHONE_NUMBER']; ?>" class="input-block-level" name="PHONE_NUMBER"/>
+            <label for="ACCOUNT_BALANCE">Account Balance:</label><input type="text" value="<?php echo $row['ACCOUNT_BALANCE']; ?>" class="input-block-level" disabled="disabled" name="ACCOUNT_BALANCE"/>
             <br/><br/><br/>
-            <input type="hidden" name="PHOTO" value="" id="photo"/>
+            <input type="hidden" name="PHOTOGRAPH" value="" id="photo"/>
+            <input type="hidden" name="sqltransaction" value="updateAll"/>
+            <input type="hidden" name="table" value="basic-info"/>
         </div>    
     </div>
     <div class="row">
@@ -79,6 +85,9 @@
             <div class="span4">
                 <canvas id='canvas' width="300" height="300"></canvas>
                 <button class="btn btn-medium" id="capture">capture</button>
+            </div>
+            <div class="span4">
+                <img  width="300" height="300" src="<?php echo $row['PHOTOGRAPH']; ?>"/>
             </div>
            </div> 
         </div>    
