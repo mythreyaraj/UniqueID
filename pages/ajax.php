@@ -53,9 +53,9 @@
 		if(!isset($_POST['table']))
 			die('Error: Invalid Access');
 		$table=$_POST['table'];
-		if(isset($_POST['field']) and !isset($val=$_POST['value'])
+		if(isset($_POST['field']) and !isset($_POST['value'])
 			die('Error:Invalid Access');
-		else if(isset($_POST['field']) and isset($val=$_POST['value']))
+		else if(isset($_POST['field']) and isset($_POST['value']))
 		{
 			$table=$_POST['table'];
 			$field=$_POST['field'];
