@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2013 at 05:37 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
+-- Generation Time: Apr 17, 2013 at 09:10 AM
+-- Server version: 5.5.29
+-- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `dbms`
+-- Database: `UniqueID`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `airline_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `FROM` varchar(100) NOT NULL,
   `TO` varchar(100) NOT NULL,
   `DATE` date NOT NULL,
@@ -42,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `airline_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `authentication` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(100) NOT NULL,
   `PASSWORD` varchar(100) NOT NULL,
   PRIMARY KEY (`UID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table to store the password for each Unique ID' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `authentication` (
 --
 
 CREATE TABLE IF NOT EXISTS `bank_description` (
-  `ACCOUNT_NUMBER` varchar(100) NOT NULL,
+  `ACCOUNT_NUMBER` int(11) NOT NULL,
   `TRANSACTION` varchar(100) NOT NULL,
   `AMOUNT` double NOT NULL,
   `DESCRIPTION` text NOT NULL
@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `bank_description` (
 --
 
 CREATE TABLE IF NOT EXISTS `bank_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `BANK` varchar(100) NOT NULL,
-  `ACCOUNT_NUMBER` varchar(100) NOT NULL,
+  `ACCOUNT_NUMBER` int(11) NOT NULL,
   `BALANCE` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='table describes bank account details of all UIDS';
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `basic_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `FIRST_NAME` varchar(100) NOT NULL,
   `MIDDLE_NAME` varchar(100) NOT NULL,
   `LAST_NAME` varchar(100) NOT NULL,
@@ -104,13 +104,14 @@ CREATE TABLE IF NOT EXISTS `basic_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `birth_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `DATE` date NOT NULL,
   `HOSPITAL` varchar(100) NOT NULL,
   `DOCTOR` varchar(100) NOT NULL,
-  `FATHER_UID` varchar(100) NOT NULL,
-  `MOTHER_UID` varchar(100) NOT NULL,
-  PRIMARY KEY (`UID`)
+  `FATHER_UID` int(11) NOT NULL,
+  `MOTHER_UID` int(11) NOT NULL,
+  PRIMARY KEY (`UID`),
+  UNIQUE KEY `UID` (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -120,8 +121,8 @@ CREATE TABLE IF NOT EXISTS `birth_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `criminal_info` (
-  `UID` varchar(100) NOT NULL,
-  `FIR_NUMBER` varchar(100) NOT NULL
+  `UID` int(11) NOT NULL,
+  `FIR_NUMBER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table links fir details to unique ids';
 
 -- --------------------------------------------------------
@@ -131,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `criminal_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `education_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `QUALIFICATION` varchar(100) NOT NULL,
   `INSTITUTION` varchar(100) NOT NULL,
   `PERCENTAGE` double NOT NULL,
@@ -145,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `education_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `electricity_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `OUTSTANDING_AMOUNT` double NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores data about each UID''s Electricity balance';
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `electricity_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `electricity_transactions` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `AMOUNT` double NOT NULL,
   `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores all the electricity payments';
@@ -169,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `electricity_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `fir_details` (
-  `FIR_NUMBER` varchar(100) NOT NULL,
+  `FIR_NUMBER` int(11) NOT NULL,
   `DATE` date NOT NULL,
   `DESCRIPTION` text NOT NULL,
   `FIR_COPY` varchar(100) NOT NULL,
@@ -183,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `fir_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `medical_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `DOCUMENT` varchar(100) NOT NULL,
   `DESCRIPTION` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table describes medical history';
@@ -195,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `medical_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `passport_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `PASSPORT_NUMBER` varchar(100) NOT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Maps UID to passport numbers';
@@ -207,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `passport_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `phone_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `PHONE_NUMBER` varchar(100) NOT NULL,
   `OUTSTANDING_AMOUNT` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table stores the details about each UID''s phone numbers';
@@ -219,8 +220,8 @@ CREATE TABLE IF NOT EXISTS `phone_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `phone_transactions` (
-  `UID` varchar(100) NOT NULL,
-  `PHONE_NUMBER` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
+  `PHONE_NUMBER` int(11) NOT NULL,
   `AMOUNT` double NOT NULL,
   `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -232,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `phone_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `railway_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `FROM` varchar(100) NOT NULL,
   `TO` varchar(100) NOT NULL,
   `DATE` date NOT NULL,
@@ -248,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `railway_info` (
 --
 
 CREATE TABLE IF NOT EXISTS `voting_info` (
-  `UID` varchar(100) NOT NULL,
+  `UID` int(11) NOT NULL,
   `YEAR` int(11) NOT NULL,
   `CHOICE` varchar(100) NOT NULL,
   `DESCRIPTION` text NOT NULL
