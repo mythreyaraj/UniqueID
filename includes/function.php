@@ -108,7 +108,7 @@
 	function closeconnection(){
 		mysql_close();		
 	}	
-	function insert($table,$data)
+	/*function insert($table,$data)
 	{
 		for ($i=0;$i<count($attributes[$table]]) and $attributes[$table]][$i]!='UID' ;$i++)
 		if($i<count($attributes[$table]])
@@ -147,7 +147,7 @@
 		$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=\''.$val.'\';';
 		$result=mysql_query($query);
 		echo json_encode($result);		
-	}	
+	}*/	
 	function transaction($transaction,$amount,$description)
 	{
 		$query="SELECT `ACCOUNT_NUMBER` FROM `bank_info` WHERE `UID`={$_SESSION['UID']};";
