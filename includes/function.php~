@@ -13,7 +13,7 @@
 				session_start();
 				$_SESSION['user']=$username;
 				global $root;
-				redirect_to($root."/home/background");
+				redirect_to($root."/background");
 			}
 			else{
 			    echo '

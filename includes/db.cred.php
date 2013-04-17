@@ -2,5 +2,5 @@
 	$dbhost='localhost';
 	$dbuser='root';
 	$dbpassword='root';
-	$dbdatabase='dbms';
+	$dbdatabase='UniqueID';
 ?>
