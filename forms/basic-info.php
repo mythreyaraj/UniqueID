@@ -1,3 +1,9 @@
+<?php 
+    if(isset($_SESSION['user'])){
+        openconnection();
+        
+    }
+?>
 <style type="text/css">
 	 .form-basic-info {
         padding: 19px 29px 29px;
@@ -32,21 +38,21 @@
 <form class="form-basic-info" method="post" action="">
     <div class="row">
         <div class="span6">
-            <label for="fname">First Name:</label><input type="text" class="input-block-level" name="fname"/>
-            <label for="mname">Middle Name:</label><input type="text" class="input-block-level" name="mname"/>
-            <label for="lname">Last Name:</label><input type="text" class="input-block-level" name="lname"/>
-            <label for="dob">Date of Birth:</label><input type="date" class="input-block-level" name="dob" max="2013-04-16"/>
-            <label for="sex">Sex:</label>
-            <label class="radio inline" for="sex">
-            <input type="radio" name="sex" value="male"/>
+            <label for="FIRST_NAME">First Name:</label><input type="text" class="input-block-level" name="FIRST_NAME"/>
+            <label for="MIDDLE_NAME">Middle Name:</label><input type="text" class="input-block-level" name="MIDDLE_NAME"/>
+            <label for="LAST_NAME">Last Name:</label><input type="text" class="input-block-level" name="LAST_NAME"/>
+            <label for="DOB">Date of Birth:</label><input type="date" class="input-block-level" name="DOB" max="2013-04-16"/>
+            <label for="SEX">SEX:</label>
+            <label class="radio inline" for="SEX">
+            <input type="radio" name="SEX" value="male"/>
             M
             </label>
-            <label class="radio inline" for="sex">
-            <input type="radio" name="sex" value="female"/>
+            <label class="radio inline" for="SEX">
+            <input type="radio" name="SEX" value="female"/>
             F
             </label>
             <br/><br/>
-            <label for="mstatus">Martial Status:</label><select name="mstatus" class="input-block-level">
+            <label for="MARTIAL_STATUS">Martial Status:</label><select name="MARTIAL_STATUS" class="input-block-level">
             	<option value="married">Married</option>
             	<option value="divorced">Divorced</option>
             	<option value="single">Single</option>
@@ -54,13 +60,13 @@
             </select>
         </div>
         <div class="span5">
-        	<label for="address1">Address Line 1:</label><input type="text" class="input-block-level" name="address1"/>
-            <label for="address2">Address Line 2:</label><input type="text" class="input-block-level" name="address2"/>
-            <label for="address3">Address Line 3:</label><input type="text" class="input-block-level" name="address3"/>
-            <label for="email">Email:</label><input type="text" class="input-block-level" name="email"/>
-            <label for="balance">Account Balance:</label><input type="text" class="input-block-level" name="balance"/>
+        	<label for="ADDRESS_1">Address Line 1:</label><input type="text" class="input-block-level" name="ADDRESS_1"/>
+            <label for="ADDRESS_2">Address Line 2:</label><input type="text" class="input-block-level" name="ADDRESS_2"/>
+            <label for="ADDRESS_3">Address Line 3:</label><input type="text" class="input-block-level" name="ADDRESS_3"/>
+            <label for="EMAIL">Email:</label><input type="text" class="input-block-level" name="EMAIL"/>
+            <label for="ACCOUNT_BALANCE">Account Balance:</label><input type="text" class="input-block-level" disabled="disabled" name="ACCOUNT_BALANCE"/>
             <br/><br/><br/>
-            <input type="hidden" name="photo" value="" id="photo"/>
+            <input type="hidden" name="PHOTO" value="" id="photo"/>
         </div>    
     </div>
     <div class="row">
