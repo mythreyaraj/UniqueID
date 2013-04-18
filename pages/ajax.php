@@ -124,7 +124,18 @@ echo 			$sql="UPDATE `electricity_info` SET `OUTSTANDING_AMOUNT`={$_POST['OUTSTA
 			else{
 				redirect_to($root.'/passport/failed');	
 			}	
+		}
+		if(isset($_POST['payphone'])){
+			
+			phone_payment($_SESSION['UID'],$_POST['anumber'],$_POST['amount']);
+				redirect_to($root.'/bills/success');
+		
 		}	
+		if(isset($_POST['payelectricity'])){
+			
+			electricity_payment($_SESSION['UID'],$_POST['anumber'],$_POST['amount']);
+			redirect_to($root.'/bills/success');
+		}
 }
 
 ?>

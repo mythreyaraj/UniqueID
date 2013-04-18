@@ -120,40 +120,54 @@
 		openconnection();
 		$query="SELECT `BALANCE` from `bank_info` WHERE `ACCOUNT_NUMBER`={$account_number}";
 		$result=mysql_query($query);
-		$amt=$result['BALANCE'];
-		if($amt>=$amount)
-		{
-			$query="UPDATE `electricity_info` SET `OUTSTANDING AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}' ";
-			$result=mysql_query($query);
-			$a=$amt-$amount;
-			$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
-			$result=mysql_query($query);			
-			$query="INSERT INTO `bank_description` VALUES('{$account_number}','electricity','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
-			$result=mysql_query($query);						
-		}
+		while($row=mysql_fetch_array($result)){
+			$amt=$row['BALANCE'];
+			if($amt>=$amount)
+			{
+
+				$query="UPDATE `electricity_info` SET `OUTSTANDING_AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}' ";
+				$result=mysql_query($query);
+				$a=$amt-$amount;
+				$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
+				$result=mysql_query($query);			
+				$query="INSERT INTO `bank_description` VALUES('{$account_number}','electricity','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+				$result=mysql_query($query);
+				if($result)
+					return true;	
+				break;					
+			}
+		}	
 	}
 	function phone_payment($uid,$account_number,$amount)
 	{
 		openconnection();
 		$query="SELECT `BALANCE` from `bank_info` WHERE `ACCOUNT_NUMBER`={$account_number}";
 		$result=mysql_query($query);
-		$amt=$result['BALANCE'];
-		if($amt>=$amount)
-		{
-			$query="UPDATE `phone_info` SET `OUTSTANDING AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}'";
-			$result=mysql_query($query);
-			$a=$amt-$amount;
-			$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
-			$result=mysql_query($query);			
-			$query="INSERT INTO `bank_description` VALUES('{$account_number}','phone','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
-			$result=mysql_query($query);						
-		}
+		while($row=mysql_fetch_array($result)){
+			$amt=$row['BALANCE'];
+			if($amt>=$amount)
+			{
+				$query="UPDATE `phone_info` SET `OUTSTANDING_AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}'";
+				$result=mysql_query($query);
+				echo mysql_error();
+				$a=$amt-$amount;
+				$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
+				$result=mysql_query($query);			
+				$query="INSERT INTO `bank_description` VALUES('{$account_number}','phone','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+				$result=mysql_query($query);	
+				if($result)
+					return true;
+				break;
+			}
+		}	
+		
 	}
 	function admin_search($name)
 	{
 		openconnection();	
 		$query="SELECT * FROM `basic_info` WHERE `FIRST_NAME` LIKE('%{$name}%') OR `MIDDLE_NAME` LIKE('%{$name}%') OR `LAST_NAME` LIKE('%{$name}%');";
-		echo json_encode(mysql_query($query));
+		$result=mysql_query($query);
+		return $result;
 	}
 			
 ?>

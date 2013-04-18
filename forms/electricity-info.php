@@ -27,8 +27,8 @@
 </style>
 <form class="form-electricity-info" method="post" action="<?php echo $root."/ajax"; ?>">
     <h4 class="form-electricity-heading">electricity details</h4>
-    <label for="UID">UID:</label><input type="hidden" class="input-block-level" name="UID" value="<?php echo $_GET['subpage']; ?>"/>  
-    <label for="OUTSTANDING_AMOUNT">OUTSTANDING AMOUNT:</label><input type="text" class="input-block-level" name="OUTSTANDING_AMOUNT"/>
+  <input type="hidden" class="input-block-level" name="UID" value="<?php echo $_GET['subpage']; ?>"/>  
+    <label for="OUTSTANDING_AMOUNT">OUTSTANDING AMOUNT:</label><input type="number" class="input-block-level" name="OUTSTANDING_AMOUNT" placeholder="Update the amount to payed"/>
     <input type="hidden" name="sqltransaction" value="update"/>
     <input type="hidden" name="table" value="electricity-info"/>
     <button class="btn btn-medium btn-primary" type="submit" name="updateelectricity">UPDATE</button>
