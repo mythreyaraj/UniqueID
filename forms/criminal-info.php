@@ -5,7 +5,7 @@
 ?>
 <style type="text/css">
 	 .form-criminal-info {
-        max-width: 300px;
+        max-width: 500px;
         padding: 19px 29px 29px;
         background-color: #fff;
         border: 1px solid #e5e5e5;
@@ -26,16 +26,20 @@
       }
 </style>
 <form class="form-criminal-info" method="post" action="<?php echo $root."/ajax"; ?>">
+  <table class="table table-striped table-bordered table-condensed"><thead><tr>
+    <td>FIR Number</td><td>Date</td><td>Description Of Crime</td>
+    </thead></tr><tbody>
     <?php 
       if(isset($_SESSION['UID'])){
         $con=openconnection();
         $query="SELECT * FROM `criminal_info` WHERE `UID`={$_SESSION['UID']}";
         $result=mysql_query($query,$con);
         while($row=mysql_fetch_array($result)){
-          echo "<p>{$row['FIR_NUMBER']}-{$row['DATE']}-{$row['DESCRIPTION']}</p>";
+          echo "<tr><td>{$row['FIR_NUMBER']}</td><td>{$row['DATE']}</td><td>{$row['DESCRIPTION']}</td></tr>";
         }
       }
     ?>
+     </tbody></table>
     <label for="FIR_NUMBER">Fir number:</label><input type="text" class="input-block-level" name="FIR_NUMBER"/>
 		<label for="DATE">Date:</label><input type="date" class="input-block-level" name="DATE" max="2013-04-16"/>
     <label for="DESCRIPTION">Description:</label><input type="text" class="input-block-level" name="DESCRIPTION"/>

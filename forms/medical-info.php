@@ -1,6 +1,6 @@
 <style type="text/css">
 	 .form-medical-info {
-        max-width: 300px;
+        max-width: 500px;
         padding: 19px 29px 29px;
         background-color: #fff;
         border: 1px solid #e5e5e5;
@@ -21,16 +21,20 @@
       }
 </style>
 <form class="form-medical-info" method="post" action="<?php echo $root."/ajax"; ?>">
+    <table class="table table-striped table-bordered table-condensed"><thead><tr>
+    <td>Insurance Number</td><td>Description Of Case</td>
+    </thead></tr><tbody>
     <?php 
       if(isset($_SESSION['UID'])){
         $con=openconnection();
         $query="SELECT * FROM `medical_info` WHERE `UID`={$_SESSION['UID']}";
         $result=mysql_query($query,$con);
         while($row=mysql_fetch_array($result)){
-          echo "<p>{$row['INSURANCE_NUMBER']}-{$row['DESCRIPTION']}</p>";
+          echo "<tr><td>{$row['INSURANCE_NUMBER']}</td><td>{$row['DESCRIPTION']}</td></tr>";
         }
       }
     ?>
+        </tbody></table>
     <label for="INSURANCE_NUMBER">Insurance number:</label><input type="text" class="input-block-level" name="INSURANCE_NUMBER"/>
     <label for="DESCRIPTION">Description:</label><input type="text" class="input-block-level" name="DESCRIPTION"/>
     <input type="hidden" name="sqltransaction" value="insert"/>

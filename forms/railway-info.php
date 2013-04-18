@@ -36,11 +36,11 @@
 			<option value="1">5</option>
 		</select>
 		<label for="DATE">Date:</label><input type="date" class="input-block-level" name="DATE" min="2013-04-16"/>
-		<label for="ADULT_TICKETS">Number of Passengers:</label><input type="number" class="input-block-level" name="ADULT_TICKETS"/>
-    <label for="CHILDREN_TICKETS">Number of Passengers:</label><input type="number" class="input-block-level" name="CHILDREN_TICKETS"/>
+		<label for="ADULT_TICKETS">Adult Tickets:</label><input type="number" class="input-block-level" name="ADULT_TICKETS"/>
+    <label for="CHILDREN_TICKETS">Child Tickets:</label><input type="number" class="input-block-level" name="CHILDREN_TICKETS"/>
 		<input type="hidden" class="input-block-level" name="PNR" value="<?php echo md5(time()."this is a salted hash:)") ?>"/>
     <input type="hidden" name="sqltransaction" value="insert"/>
     <input type="hidden" name="table" value="railway-info"/>
-    <p>COST:=adult_tickets x 1000 + children_tickets x 500 INR</p>
+    <p>COST:=adult_tickets x 500 + children_tickets x 250 INR</p>
     <button class="btn btn-medium btn-primary" type="submit" name="bookrailticket">BOOK TICKET</button>
 </form>

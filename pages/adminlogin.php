@@ -37,7 +37,7 @@
 </style>
 <form class="form-signin" method="post">
         <h4 class="form-signin-heading">Admin Login</h4>
-        <input type="text" class="input-block-level" placeholder="Username" name="username">
-        <input type="password" class="input-block-level" placeholder="Password" name="password">
+        <input type="text" class="input-block-level" placeholder="Username" name="username" required>
+        <input type="password" class="input-block-level" placeholder="Password" name="password" required>
         <button class="btn btn-medium btn-primary" type="submit" name="login">Sign in</button>
 </form>

@@ -83,17 +83,32 @@
 <?php }
 	else{
  ?>
-
-  <div class='span9 main'>
-    <h2>Main Content Section</h2>
-  </div>
   <div class='span3 sidebar'>
-    <h2>Sidebar</h2>
-    <ul class="nav nav-tabs nav-stacked">
-      <li><a href='#'>Another Link 1</a></li>
-      <li><a href='#'>Another Link 2</a></li>
-      <li><a href='#'>Another Link 3</a></li>
-    </ul>
+    
+	<ul class="nav nav-list">
+		<li class="nav-header">Navigation</li>
+		<li class='active'><a href="<?php echo $root; ?>" >Home</a></li>
+		<?php if(isset($_SESSION['user'])){ ?>
+			<li><a href="<?php echo $root."/profile"; ?>" >Profile</a></li>
+			<li><a href="<?php echo $root."/bank"; ?>" >Bank Details</a></li>
+			<li><a href="<?php echo $root."/birth"; ?>" >Birth Details</a></li>
+			<li><a href="<?php echo $root."/criminal"; ?>" >Criminal Details</a></li>
+			<li><a href="<?php echo $root."/education"; ?>" >Education Details</a></li>
+			<li><a href="<?php echo $root."/medical"; ?>" >Medical Details</a></li>
+			<li><a href="<?php echo $root."/passport"; ?>" >Passport Details</a></li>
+			<li><a href="<?php echo $root."/tickets"; ?>" >Book Tickets</a></li>
+			<li><a href="<?php echo $root."/bills"; ?>" >Pay Bills</a></li>
+		<?php } ?>
+	</ul>
+  </div>	
+  <div class='span8 main'>
+    <h2>Main Content Section</h2>
   </div>
 <?php } ?>  
 </div>
+<style type="text/css">
+	.sidebar{
+		background: #F5F5F5;
+		margin: 10px;
+	}
+</style>

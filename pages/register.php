@@ -38,8 +38,8 @@
 </style>
 <form class="form-register" method="post">
         <h4 class="form-register-heading">Registration</h4>
-        <input type="text" class="input-block-level" name="username" placeholder="Username">
-        <input type="password" class="input-block-level" name="password" placeholder="Password">
-        <input type="password" class="input-block-level" name="rpassword" placeholder="Reenter-Password">
+        <input type="text" class="input-block-level" name="username" placeholder="Username" required>
+        <input type="password" class="input-block-level" name="password" placeholder="Password" required>
+        <input type="password" class="input-block-level" name="rpassword" placeholder="Reenter-Password" required>
         <button class="btn btn-medium btn-primary" type="submit" name="register">Register</button>
 </form>

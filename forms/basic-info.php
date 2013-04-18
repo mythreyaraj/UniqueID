@@ -42,7 +42,7 @@
       }
 </style>
 <form class="form-basic-info" method="post" action="<?php echo $root."/ajax"; ?>">
-    <div class="row">
+    <div class="row-fluid">
         <div class="span6">
             <label for="FIRST_NAME">First Name:</label><input type="text" value="<?php echo $row['FIRST_NAME']; ?>" class="input-block-level" name="FIRST_NAME"/>
             <label for="MIDDLE_NAME">Middle Name:</label><input type="text" value="<?php echo $row['MIDDLE_NAME']; ?>" class="input-block-level" name="MIDDLE_NAME"/>
@@ -65,7 +65,7 @@
             	<option value="engaged" <?php if($row['MARITAL_STATUS']=='engaged'){ echo "selected";} ?> >Engaged</option>
             </select>
         </div>
-        <div class="span5">
+        <div class="span6">
         	<label for="ADDRESS_1">Address Line 1:</label><input type="text" value="<?php echo $row['ADDRESS_1']; ?>" class="input-block-level" name="ADDRESS_1"/>
             <label for="ADDRESS_2">Address Line 2:</label><input type="text" value="<?php echo $row['ADDRESS_2']; ?>" class="input-block-level" name="ADDRESS_2"/>
             <label for="ADDRESS_3">Address Line 3:</label><input type="text" value="<?php echo $row['ADDRESS_3']; ?>" class="input-block-level" name="ADDRESS_3"/>
@@ -74,26 +74,31 @@
             <br/><br/><br/>
             <input type="hidden" name="PHOTOGRAPH" value="" id="photo"/>
         </div>    
-    </div>
-    <div class="row">
-        <div class="span12">
-           <div class="row"> 
-            <div class="span4">
+    </div><br/><br/>
+    <div class="row-fluid">
+        
+           
+            <div class="span12">
+                <img  width="200" height="200" src="<?php echo $row['PHOTOGRAPH']; ?>"/>
+            </div>
+           
+        
+    </div><br/><br/>
+    <div class="row-fluid">
+        
+           
+            <div class="span6">
                 <video autoplay></video>
 
             </div>
-            <div class="span4">
+            <div class="span6">
                 <canvas id='canvas' width="300" height="300"></canvas>
                 <button class="btn btn-medium" id="capture">capture</button>
             </div>
-            <div class="span4">
-                <img  width="300" height="300" src="<?php echo $row['PHOTOGRAPH']; ?>"/>
-            </div>
-           </div> 
-        </div>    
+        
     </div>
     <br/><br/><br/>
-    <div class="row">
+    <div class="row-fluid">
         <div class="span12">
             <button class="btn btn-medium btn-primary" type="submit" name="basicupdate">update</button>
         </div> 
