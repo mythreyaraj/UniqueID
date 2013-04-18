@@ -27,12 +27,18 @@
 			echo "<h4>{$row[0]}</h4>";
 			echo "<table class='table table-striped table-bordered table-condensed'><thead><tr>";
 			while($rw=mysql_fetch_array($r1)){
-				if($rw['Field']!='ADDRESS_1' && $rw['Field']!='ADDRESS_2' && $rw['Field']!='ADDRESS_3')
-					echo "<td>{$rw['Field']}</td>";		
+				if($rw['Field']!='ADDRESS_1' && $rw['Field']!='ADDRESS_2' && $rw['Field']!='ADDRESS_3' && $rw['Field']!='FIRST_NAME' && $rw['Field']!='MIDDLE_NAME' && $rw['Field']!='LAST_NAME'){
+					echo "<td>{$rw['Field']}</td>";	
+				}		
 				else
+				{
 					if($rw['Field']=='ADDRESS_3'){
 						echo "<td>ADDRESS</td>";
-					}			
+					}
+					if($rw['Field']=='LAST_NAME'){
+						echo "<td>NAME</td>";
+					}
+				}				
 			}
 				echo "</tr></thead><tbody>";
 			$r=mysql_query($sql);
@@ -41,7 +47,7 @@
 				echo "<tr>";
 				for($i=0;$i<count($rw)/2;$i++){
 					if(!strncmp($rw[$i], 'data:image/jpeg;base64', strlen('data:image/jpeg;base64'))){
-						echo "<td><img src='{$rw[$i]}' height='20' width='20' /></td>";					
+						echo "<td><img src='{$rw[$i]}' height='50' width='50' /></td>";					
 					}
 					else
 					if($row[0]!='basic_info')
@@ -55,6 +61,17 @@
 								echo "{$rw[$i]}<br/>";
 							}
 							if($i==9){
+								echo "{$rw[$i]}</td>";
+							}
+						}
+						else if($i>=1 && $i<=3){
+							if($i==1){
+								echo "<td>{$rw[$i]}<br/>";
+							}
+							if($i==2){
+								echo "{$rw[$i]}<br/>";
+							}
+							if($i==3){
 								echo "{$rw[$i]}</td>";
 							}
 						}
@@ -74,9 +91,6 @@
 		echo "</div><div class='span6'>";
 		include("forms/phone-info.php");
 		echo "</div>";
-	}
-	else{
-		
 	}
 ?>
 </div>

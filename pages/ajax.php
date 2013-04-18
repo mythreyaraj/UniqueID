@@ -1,5 +1,5 @@
 <?php	
-	if(isset($_SESSION['user'])){
+	if(isset($_SESSION['user']) || isset($_SESSION['admin'])){
 
 		if(isset($_POST['basicupdate'])){
 			$con=openconnection();
@@ -66,8 +66,9 @@
 			}
 		}
 		if(isset($_POST['updateelectricity'])){
+			print_r($_POST);
 			$con=openconnection();
-			$sql="UPDATE `electricity_info` SET `OUTSTANDING_AMOUNT`={$_POST['OUTSTANDING_AMOUNT']} WHERE `UID`={$_POST['UID']}";
+echo 			$sql="UPDATE `electricity_info` SET `OUTSTANDING_AMOUNT`={$_POST['OUTSTANDING_AMOUNT']} WHERE `UID`={$_POST['UID']}";
 			if(mysql_query($sql,$con)){
 				redirect_to($root.'/home/success');	
 			}
@@ -76,6 +77,7 @@
 			}	
 		}
 		if(isset($_POST['updatephone'])){
+
 			$con=openconnection();
 			$sql="UPDATE `phone_info` SET `OUTSTANDING_AMOUNT`={$_POST['OUTSTANDING_AMOUNT']} WHERE `UID`={$_POST['UID']}";
 			if(mysql_query($sql,$con)){
@@ -122,8 +124,7 @@
 			else{
 				redirect_to($root.'/passport/failed');	
 			}	
-		}
-		
+		}	
 }
 
 ?>
