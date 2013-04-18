@@ -27,7 +27,7 @@
 </style>
 <form class="form-phone-info" method="post" action="<?php echo $root."/ajax"; ?>">
 <h4 class="form-phone-heading">Phone details</h4>
-    <label for="UID">UID:</label><input type="text" class="input-block-level" name="UID"/>  
+    <label for="UID">UID:</label><input type="text" class="input-block-level" name="UID" value="<?php echo $_GET['subpage']; ?>" disabled/>  
     <label for="OUTSTANDING_AMOUNT">OUTSTANDING AMOUNT:</label><input type="text" class="input-block-level" name="OUTSTANDING_AMOUNT"/>
     <button class="btn btn-medium btn-primary" type="submit" name="updatephone">UPDATE</button>
 </form>

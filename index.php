@@ -9,7 +9,6 @@ else{
 	$TITLE=$_GET['page'];
 	include('includes/header.php');	
 	include("pages/{$_GET['page']}.php");
-	//echo $TITLE;
 	include('includes/footer.php');	
 }	
 ?>
