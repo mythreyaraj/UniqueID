@@ -123,11 +123,12 @@
 		$amt=$result['BALANCE'];
 		if($amt>=$amount)
 		{
-			$query="UPDATE `electricity_info` SET `OUTSTANDING AMOUNT`='0'";
+			$query="UPDATE `electricity_info` SET `OUTSTANDING AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}' ";
 			$result=mysql_query($query);
-			$query="UPDATE `bank_info` SET `ACCOUNT_NUMBER`='{$amt-$amount}'";
+			$a=$amt-$amount;
+			$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
 			$result=mysql_query($query);			
-			$query="INSERT INTO `bank_description` VALUES('{$amount}','electricity','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+			$query="INSERT INTO `bank_description` VALUES('{$account_number}','electricity','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
 			$result=mysql_query($query);						
 		}
 	}
@@ -139,11 +140,12 @@
 		$amt=$result['BALANCE'];
 		if($amt>=$amount)
 		{
-			$query="UPDATE `phone_info` SET `OUTSTANDING AMOUNT`='0'";
+			$query="UPDATE `phone_info` SET `OUTSTANDING AMOUNT`='0' WHERE `UID`='{$_SESSION['UID']}'";
 			$result=mysql_query($query);
-			$query="UPDATE `bank_info` SET `ACCOUNT_NUMBER`='{$amt-$amount}'";
+			$a=$amt-$amount;
+			$query="UPDATE `bank_info` SET `BALANCE`={$a} WHERE `ACCOUNT_NUMBER`='{$account_number}'";
 			$result=mysql_query($query);			
-			$query="INSERT INTO `bank_description` VALUES('{$amount}','phone','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+			$query="INSERT INTO `bank_description` VALUES('{$account_number}','phone','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
 			$result=mysql_query($query);						
 		}
 	}
