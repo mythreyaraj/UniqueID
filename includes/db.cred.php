@@ -1,6 +1,6 @@
 <?php 
 	$dbhost='localhost';
 	$dbuser='root';
-	$dbpassword='';
-	$dbdatabase='dbms';
+	$dbpassword='root';
+	$dbdatabase='UniqueID';
 ?>

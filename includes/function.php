@@ -11,7 +11,7 @@
 			$result=mysql_query($sql,$con);
 			if(mysql_num_rows($result)==1){
 				session_start();
-				$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`={$username}";
+				$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`='{$username}'";
 				if($result=mysql_query($sql,$con)){
 					$row=mysql_fetch_array($result);
 					$id=$row['UID'];
@@ -69,7 +69,7 @@
 
 	function initialization($username){
 		$con=openconnection();
-		$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`={$username}";
+		$sql="SELECT `UID` FROM `authentication` WHERE `USERNAME`='{$username}'";
 		if($result=mysql_query($sql,$con)){
 			$row=mysql_fetch_array($result);
 			$id=$row['UID'];
@@ -115,52 +115,43 @@
 	function closeconnection(){
 		mysql_close();		
 	}	
-	/*function insert($table,$data)
+	function electricity_payment($uid,$account_number,$amount)
 	{
-		for ($i=0;$i<count($attributes[$table]]) and $attributes[$table]][$i]!='UID' ;$i++)
-		if($i<count($attributes[$table]])
-		{
-			if(!isset($data['UID']))
-			{
-				json_decode(query('authentication','UNAME',$_SESSION['name']),$temp);
-				$data['UID']=$temp['UID'];
-			}
-		}
-		$query='INSERT INTO `'.$table.'`';
-		$query.=' VALUES(\''.$data[$attributes[$table][0]].'\'';
-		for ($i=1;$i<count($attributes[$table]);$i++)
-		{
-			$query.=',\''.$data[$attributes[$table][$i]].'\'';
-		}
-		$query.=');';
-		mysql_query($query);	
-	}
-	function update($table,$attribute,$val)
-	{
-		$query='UPDATE `'.$table.'` SET `'.$attribute.'`=\''.$val.'\'';
-		mysql_query($query);	
-	}
-	function updateAll($table,$data)
-	{
-		$query='UPDATE `'.$table.'` SET `';
-		$query.=$attributes[$table][0].'`=\''.$data[$attributes[$table][0]].'\'';		
-		for ($k=1;$k<count($attributes[$table]);$k++)
-			$query.=',`'.$attributes[$table][$k].'`=\''.$data[$k].'\'';
-		$query.=';';
-		mysql_query($query);
-	}
-	function query($table,$attribute=1,$value=1)
-	{
-		$query='SELECT * FROM `'.$table.'` WHERE `'.$field.'`=\''.$val.'\';';
+		openconnection();
+		$query="SELECT `BALANCE` from `bank_info` WHERE `ACCOUNT_NUMBER`={$account_number}";
 		$result=mysql_query($query);
-		echo json_encode($result);		
-	}*/	
-	function transaction($transaction,$amount,$description)
-	{
-		$query="SELECT `ACCOUNT_NUMBER` FROM `bank_info` WHERE `UID`={$_SESSION['UID']};";
-		$result=mysql_query($query);
-		$acct=$result['ACCOUNT_NUMBER'];
-		$query="INSERT INTO bank_description VALUES('{$acct}','{$transaction}','{$amount}','{$description}')";
-		mysql_query($query);
+		$amt=$result['BALANCE'];
+		if($amt>=$amount)
+		{
+			$query="UPDATE `electricity_info` SET `OUTSTANDING AMOUNT`='0'";
+			$result=mysql_query($query);
+			$query="UPDATE `bank_info` SET `ACCOUNT_NUMBER`='{$amt-$amount}'";
+			$result=mysql_query($query);			
+			$query="INSERT INTO `bank_description` VALUES('{$amount}','electricity','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+			$result=mysql_query($query);						
+		}
 	}
+	function phone_payment($uid,$account_number,$amount)
+	{
+		openconnection();
+		$query="SELECT `BALANCE` from `bank_info` WHERE `ACCOUNT_NUMBER`={$account_number}";
+		$result=mysql_query($query);
+		$amt=$result['BALANCE'];
+		if($amt>=$amount)
+		{
+			$query="UPDATE `phone_info` SET `OUTSTANDING AMOUNT`='0'";
+			$result=mysql_query($query);
+			$query="UPDATE `bank_info` SET `ACCOUNT_NUMBER`='{$amt-$amount}'";
+			$result=mysql_query($query);			
+			$query="INSERT INTO `bank_description` VALUES('{$amount}','phone','{$amount}','{$_SESSION['UID']} paid {$amount} through {$account_number}'";
+			$result=mysql_query($query);						
+		}
+	}
+	function admin_search($name)
+	{
+		openconnection();	
+		$query="SELECT * FROM `basic_info` WHERE `FIRST_NAME` LIKE('%{$name}%') OR `MIDDLE_NAME` LIKE('%{$name}%') OR `LAST_NAME` LIKE('%{$name}%');";
+		echo json_encode(mysql_query($query));
+	}
+			
 ?>
